@@ -1,0 +1,17 @@
+.list-group-item{
+    cursor: pointer;
+}
+.list-group-item-action{
+    cursor: pointer;
+}
+
+.no-padding{
+    padding-left: 0 !important;
+}
+
+.alignleft{
+    float: left;
+}
+.category-nav{
+    margin-bottom: 18px;
+}
