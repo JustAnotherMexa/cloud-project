@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Product } from './models/product';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
 import { AngularFireObject } from 'angularfire2/database/interfaces';
 import { ShoppingCart } from './models/shopping-cart';
 import { Observable } from 'rxjs/Observable';
+import { ShoppingCartItem } from './models/shopping-cart-item';
+import { ShoppingCartItemMap } from './models/shopping-cart-item-map';
 
 @Injectable()
 export class ShoppingCartService {
@@ -21,7 +24,7 @@ export class ShoppingCartService {
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId).valueChanges().map(x => new ShoppingCart(x.items));
+    return this.db.object('/shopping-carts/' + cartId).valueChanges().map((x: ShoppingCartItemMap) => new ShoppingCart(x.items));
   }
 
   async clearCart(){
@@ -51,7 +54,7 @@ export class ShoppingCartService {
   private async updateItem(product: Product, change: number){
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getItem(cartId, product.key);
-    item$.valueChanges().take(1).subscribe(item => {
+    item$.valueChanges().take(1).subscribe((item: ShoppingCartItem) => {
       let quantity;
       if (!item) quantity = 0 + change;
       else quantity = (item.quantity || 0) + change;
