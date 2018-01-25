@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  stripeKey: 'sk_test_tAPb9xsrlVmFrgk4VoX1OP4B',
   firebase: {
     apiKey: "AIzaSyCQzNMqe6FwOHQCcQFP9rHWnqkjNqiyHuE",
     authDomain: "oshop-f6328.firebaseapp.com",

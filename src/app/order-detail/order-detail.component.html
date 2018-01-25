@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-6">
+      <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Shipping Details</h5>
+            <div *ngIf="order">
+              <ul class="list-group list-group-flush ">
+                <li class="list-group-item ">
+                  <b>Name:</b>
+                  <div class="float-right">
+                    {{ order.shipping.name }}
+                  </div>
+                </li>
+                <li class="list-group-item ">
+                  <b>Address:</b>
+                  <div class="float-right">
+                    {{ order.shipping.addressLine1 }}
+                    <br> {{ order.shipping.addressLine2 }}
+                  </div>
+                </li>
+                <li class="list-group-item ">
+                  <b>City:</b>
+                  <div class="float-right">
+                    {{ order.shipping.city }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-6">   
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Order Summary</h5>
+            <p *ngIf="order" class="card-text">You ordered {{getCount()}} items on {{ order.datePlaced | date}}.</p>
+            <ul *ngIf="order" class="list-group list-group-flush ">
+              <li *ngFor="let item of order.items" class="list-group-item">
+                {{ item.quantity }} x {{ item.product.title }}
+                <div class="float-right">
+                  {{ item.totalPrice | currency:'USD':symbol }}
+                </div>
+              </li>
+              <li class="list-group-item font-weight-bold ">
+                Total
+                <div class="float-right">
+                  {{ getSum() | currency:'USD':symbol }}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div> 
+  </div>
+  <ng-container *ngIf="appUser">
+    <ng-container *ngIf="appUser.isAdmin; else notAdmin">
+            <a routerLink="/admin/orders" class="btn btn-primary">Go Back</a>
+            <fa name="pencil"></fa>
+    </ng-container>
+      <ng-template #notAdmin >
+          <a routerLink="/my/orders" class="btn btn-primary">Go Back</a>
+          <fa name="pencil"></fa>
+      </ng-template>
+    </ng-container>
+  

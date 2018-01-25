@@ -38,6 +38,9 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { OrderService } from './order.service';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { PaymentModule } from './payments/payment/payment.module';
 
 
 
@@ -59,6 +62,8 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
     ProductCardComponent,
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
+    ShippingFormComponent,
+    OrderDetailComponent,
     
   ],
   imports: [
@@ -73,6 +78,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
     SharedModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
+    PaymentModule,
     RouterModule.forRoot([
       { path: '', component: ProductsComponent},
       { path: 'products', component: ProductsComponent},
@@ -83,9 +89,10 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
-
+      { path: 'my/orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
       
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+      { path: 'admin/orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard, AdminAuthGuard]},
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
       { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard]},

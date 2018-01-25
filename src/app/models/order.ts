@@ -2,6 +2,7 @@ import { ShoppingCart } from "./shopping-cart";
 
 export class Order {
     datePlaced: number;
+    name: string;
     items: any[];
 
     constructor(public userId: string, public shipping: any, shoppingCart: ShoppingCart){

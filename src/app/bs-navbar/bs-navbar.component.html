@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" routerLink="/">Burnt Ink</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="collapsingNavBar"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
 
+  <div [ngbCollapse]="!isNavbarCollapsed" class="collapse navbar-collapse" id="collapsingNavBar">
+    <ul class="navbar-nav mr-auto">
     </ul>
     <ul class="navbar-nav">
       <ng-template #anonymousUser>
@@ -28,13 +28,13 @@
         </div>
       </li>
       <li class="nav-item ">
-          <a class="nav-link" routerLink="/shopping-cart">
-            Shopping Cart
-            <span class="badge badge-secondary" *ngIf="cart$ | async as cart" >
-              {{ cart.totalItemsCount }}
-            </span>
-          </a>
-        </li>
+        <a class="nav-link" routerLink="/shopping-cart">
+          Shopping Cart
+          <span class="badge badge-secondary" *ngIf="cart$ | async as cart">
+            {{ cart.totalItemsCount }}
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
