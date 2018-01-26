@@ -10,6 +10,7 @@ import { PaymentService } from 'shared/services/payment.service';
 import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { UserService } from 'shared/services/user.service';
+import { OrderDetailComponent } from 'shared/components/order-detail/order-detail.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import { UserService } from 'shared/services/user.service';
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
+    OrderDetailComponent
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
+    OrderDetailComponent
   ],
   providers: [
     AuthService,

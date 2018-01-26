@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../../shared/services/order.service';
+import { OrderService } from '../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
-import { Order } from '../../../shared/models/order';
+import { Order } from '../../models/order';
 import { AdminAuthGuard } from '../../../admin/services/admin-auth-guard.service';
-import { AppUser } from '../../../shared/models/app-user';
-import { AuthService } from '../../../shared/services/auth.service';
+import { AppUser } from '../../models/app-user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-order-detail',
