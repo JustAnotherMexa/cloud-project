@@ -1,46 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import {RouterModule} from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
-
-
-import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
-import { UserService } from './user.service';
-import { AdminAuthGuard } from './admin-auth-guard.service';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './category.service';
-import { ProductService } from './product.service';
-import { icons } from 'glyphicons';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ShoppingCartService } from './shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
-import { OrderService } from './order.service';
-import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
-import { OrderDetailComponent } from './order-detail/order-detail.component';
-import { PaymentModule } from './payments/payment/payment.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'primeng/primeng';
+
+import { environment } from '../environments/environment';
+import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/components/product-form/product-form.component';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { AppComponent } from './app.component';
+import { BsNavbarComponent } from './core/components/bs-navbar/bs-navbar.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { LoginComponent } from './core/components/login/login.component';
+
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
+import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
+import { OrderDetailComponent } from './shopping/components/order-detail/order-detail.component';
+import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
+import { ShippingFormComponent } from './shopping/components/shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './shopping/components/shopping-cart-summary/shopping-cart-summary.component';
+import { SharedModule } from 'shared/shared.module';
+import { ShoppingCartComponent } from 'app/shopping/components/shopping-cart/shopping-cart.component';
+import { ProductsComponent } from 'app/shopping/components/products/products.component';
+import { ProductFilterComponent } from 'app/shopping/components/products/product-filter/product-filter.component';
+
 
 
 
@@ -49,8 +41,10 @@ import { PaymentModule } from './payments/payment/payment.module';
     AppComponent,
     BsNavbarComponent,
     HomeComponent,
-    ProductsComponent,
+    
     ShoppingCartComponent,
+    ProductsComponent,
+    ProductFilterComponent,
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
@@ -58,9 +52,7 @@ import { PaymentModule } from './payments/payment/payment.module';
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    ProductFilterComponent,
-    ProductCardComponent,
-    ProductQuantityComponent,
+
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
     OrderDetailComponent,
@@ -68,6 +60,7 @@ import { PaymentModule } from './payments/payment/payment.module';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -75,16 +68,13 @@ import { PaymentModule } from './payments/payment/payment.module';
     FormsModule,
     CustomFormsModule,
     DataTableModule,
-    SharedModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
-    PaymentModule,
     RouterModule.forRoot([
-      { path: '', component: ProductsComponent},
-      { path: 'products', component: ProductsComponent},
-      { path: 'shopping-cart', component: ShoppingCartComponent},
       { path: 'login', component: LoginComponent},
-
+      { path: '', component: ProductsComponent},
+      { path: 'shopping-cart', component: ShoppingCartComponent},
+      { path: 'products', component: ProductsComponent},
       
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
@@ -99,14 +89,7 @@ import { PaymentModule } from './payments/payment/payment.module';
     ])
   ],
   providers: [
-    AuthService,
-    AuthGuard,
-    UserService,
-    AdminAuthGuard,
-    CategoryService,
-    ProductService,
-    ShoppingCartService,
-    OrderService
+    AdminAuthGuard
   ],
   bootstrap: [AppComponent]
 })
