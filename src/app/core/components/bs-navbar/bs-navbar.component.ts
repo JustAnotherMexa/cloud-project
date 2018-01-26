@@ -4,6 +4,7 @@ import { AppUser } from '../../../shared/models/app-user';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-navbar',
@@ -14,15 +15,16 @@ export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
   cart$: Observable<ShoppingCart>;
 
-  constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) {
-    
-   }
+  constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService, private router: Router) {
 
-  logout(){
-    this.auth.logout();
   }
 
-  async ngOnInit(){
+  logout() {
+    this.auth.logout();
+    this.router.navigate([""]);
+  }
+
+  async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     this.cart$ = (await this.shoppingCartService.getCart());
 
