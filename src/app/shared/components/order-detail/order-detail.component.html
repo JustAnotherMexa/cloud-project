@@ -52,12 +52,5 @@
         </div>
     </div> 
   </div>
-  <ng-container *ngIf="appUser">
-    <ng-container *ngIf="appUser.isAdmin; else notAdmin">
-            <a routerLink="/admin/orders" class="btn btn-primary">Go Back</a>
-    </ng-container>
-      <ng-template #notAdmin >
-          <a routerLink="/my/orders" class="btn btn-primary">Go Back</a>
-      </ng-template>
-    </ng-container>
+
   

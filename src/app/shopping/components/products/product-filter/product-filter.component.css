@@ -2,3 +2,8 @@
     top:80px;
     padding-left: 0 !important;
 }
+
+.list-group-item.active {
+    background-color: #343a40;
+    border-color: #343a40;
+}
