@@ -13,32 +13,48 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute, private userService: UserService) {
     this.user$ = afAuth.authState;
-   }
-   login(){
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl',returnUrl);
-
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
-  loginFb(){
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl',returnUrl);
 
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
+  login() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  logout(){
+  loginT() {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+  }
+
+  loginE(email, password) {
+    const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+  }
+
+  loginGit() {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider());
+  }
+
+  loginFb() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+
+  }
+
+  logout() {
     this.afAuth.auth.signOut();
   }
 
   get appUser$(): Observable<AppUser> {
     return this.user$
-    .switchMap(user => {
-      if (user) return this.userService.get(user.uid).valueChanges();
+      .switchMap(user => {
+        if (user) return this.userService.get(user.uid).valueChanges();
 
-      return Observable.of(null);
-    })
+        return Observable.of(null);
+      })
   }
 
 }

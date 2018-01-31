@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-import { DataTableModule } from 'primeng/primeng';
+import { DataTableModule, GrowlModule, MessageModule, MessagesModule } from 'primeng/primeng';
 import { OrderDetailComponent } from 'shared/components/order-detail/order-detail.component';
 import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
 import { ProductQuantityComponent } from 'shared/components/product-quantity/product-quantity.component';
@@ -20,7 +20,10 @@ import { UserService } from 'shared/services/user.service';
     CommonModule,
     FormsModule,
     CustomFormsModule,
-    DataTableModule
+    DataTableModule,
+    MessagesModule,
+    MessageModule,
+    GrowlModule,
   ],
   declarations: [
     ProductCardComponent,
@@ -34,7 +37,10 @@ import { UserService } from 'shared/services/user.service';
     FormsModule,
     CustomFormsModule,
     CommonModule,
-    DataTableModule
+    DataTableModule,
+    MessagesModule,
+    MessageModule,
+    GrowlModule,
   ],
   providers: [
     AuthService,

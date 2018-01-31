@@ -7,6 +7,7 @@ import { LoginComponent } from 'app/core/components/login/login.component';
 import { SharedModule } from 'shared/shared.module';
 import { EmailComponent } from './components/email/email.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 
 @NgModule({
@@ -26,6 +27,9 @@ import { SignupComponent } from './components/signup/signup.component';
   ],
   exports: [
     BsNavbarComponent
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class CoreModule { }
