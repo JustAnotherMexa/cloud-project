@@ -29,7 +29,5 @@
         <div *ngIf="city.errors.required">City is required.</div>
       </div>
     </div>
-    <button 
-    [disabled] = "!f.valid"
-    (click)="placeOrder()" class="btn btn-primary">Place Order</button>
+    <make-payment [cart]="cart" [shipping]="shipping" [userId]="userId"  [valid]="f.valid" ></make-payment>
   </form>

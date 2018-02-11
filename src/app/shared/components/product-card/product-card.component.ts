@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ShoppingCart } from '../../models/shopping-cart';
 import { Product } from 'shared/models/product';
+import {LightboxModule} from 'primeng/primeng';
 
 @Component({
   selector: 'product-card',

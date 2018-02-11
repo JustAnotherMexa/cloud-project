@@ -4,4 +4,7 @@
 @import "~primeng/resources/primeng.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
-body { padding-top: 80px;}
+body { 
+    padding-top: 80px;
+    background-color: #212529;
+}

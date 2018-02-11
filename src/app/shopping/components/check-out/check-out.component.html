@@ -1,7 +1,6 @@
-<h2>
-  Shipping</h2>
+<h2 class="text-light" >Shipping</h2>
 <div class="row" *ngIf="cart$ | async as cart" > 
-  <div class="col-6">
+  <div class="col-6 text-light">
     <shipping-form [cart]="cart" ></shipping-form>
   </div>
   <div class="col-6">

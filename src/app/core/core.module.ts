@@ -6,8 +6,8 @@ import { HomeComponent } from 'app/core/components/home/home.component';
 import { LoginComponent } from 'app/core/components/login/login.component';
 import { SharedModule } from 'shared/shared.module';
 import { EmailComponent } from './components/email/email.component';
-import { SignupComponent } from './components/signup/signup.component';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -23,10 +23,11 @@ import { MessageService } from 'primeng/components/common/messageservice';
     HomeComponent,
     LoginComponent,
     EmailComponent,
-    SignupComponent,
+    FooterComponent,
   ],
   exports: [
-    BsNavbarComponent
+    BsNavbarComponent,
+    FooterComponent
   ],
   providers: [
     MessageService
