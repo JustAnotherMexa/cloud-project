@@ -7,6 +7,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AdminModule } from 'app/admin/admin.module';
 import { CoreModule } from 'app/core/core.module';
 import { ProductsComponent } from 'app/shopping/components/products/products.component';
@@ -27,6 +28,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     ShoppingModule,
     CoreModule,
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

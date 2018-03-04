@@ -14,6 +14,11 @@ import { PaymentService } from 'shared/services/payment.service';
 import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { UserService } from 'shared/services/user.service';
+import { DropZoneDirective } from './drop-zone.directive';
+import { FileUploadComponent } from 'shared/components/file-upload/file-upload.component';
+import { FileSizePipe } from './file-size.pipe';
+import { UploadService } from 'shared/services/upload.service';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   imports: [
@@ -24,12 +29,16 @@ import { UserService } from 'shared/services/user.service';
     MessagesModule,
     MessageModule,
     GrowlModule,
-    LightboxModule
+    LightboxModule,
+    ProgressBarModule
   ],
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    DropZoneDirective,
+    FileUploadComponent,
+    FileSizePipe
   ],
   exports: [
     ProductCardComponent,
@@ -42,6 +51,8 @@ import { UserService } from 'shared/services/user.service';
     MessagesModule,
     MessageModule,
     GrowlModule,
+    FileUploadComponent,
+    ProgressBarModule
   ],
   providers: [
     AuthService,
@@ -52,6 +63,7 @@ import { UserService } from 'shared/services/user.service';
     ShoppingCartService,
     OrderService,
     PaymentService,
+    UploadService
   ],
   
 })
